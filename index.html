@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Language Support</title>
+  <style>
+    /* styles.css */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.language-buttons button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.otp-verification {
+  margin-top: 20px;
+}
+
+#otp-input {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="welcome">Welcome</h1>
+    <div class="language-buttons">
+      <button onclick="changeLanguage('en')">English</button>
+      <button onclick="changeLanguage('es')">Spanish</button>
+      <button onclick="changeLanguage('hi')">Hindi</button>
+      <button onclick="changeLanguage('pt')">Portuguese</button>
+      <button onclick="changeLanguage('zh')">Chinese</button>
+      <button onclick="changeLanguage('fr')">French</button>
+    </div>
+    <div id="otp-verification" class="otp-verification">
+      <input type="text" id="otp-input" placeholder="Enter OTP">
+      <button onclick="verifyOTP()">Verify OTP</button>
+    </div>
+  </div>
+  <script>
+    // script.js
+const translations = {
+  en: 'Welcome',
+  es: 'Bienvenido',
+  hi: 'स्वागत है',
+  pt: 'Bem-vindo',
+  zh: '欢迎',
+  fr: 'Bienvenue'
+};
+
+function changeLanguage(lang) {
+  document.getElementById('welcome').innerText = translations[lang];
+  changeBackgroundColor(lang);
+  toggleOTPInput(lang);
+}
+
+function changeBackgroundColor(lang) {
+  switch (lang) {
+    case 'hi':
+      document.body.style.backgroundColor = 'blue';
+      break;
+    case 'zh':
+      document.body.style.backgroundColor = 'green';
+      break;
+    case 'fr':
+      document.body.style.backgroundColor = 'yellow';
+      break;
+    default:
+      document.body.style.backgroundColor = 'white';
+      break;
+  }
+}
+
+function toggleOTPInput(lang) {
+  const otpVerificationDiv = document.getElementById('otp-verification');
+  const otpInput = document.getElementById('otp-input');
+  
+  if (lang === 'fr') {
+    otpInput.placeholder = 'Enter Email OTP';
+  } else {
+    otpInput.placeholder = 'Enter Mobile OTP';
+  }
+
+  otpVerificationDiv.style.display = 'block';
+}
+
+function verifyOTP() {
+  const otpInput = document.getElementById('otp-input').value;
+  alert(`Verifying OTP: ${otpInput}`);
+}
+
+  </script>
+</body>
+</html>
